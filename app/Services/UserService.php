@@ -5,15 +5,20 @@ namespace App\Services;
 use App\Exceptions\UserNotFoundException;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Gate;
 
 class UserService implements ApiServiceInterface {
     public function getAll(): Collection|array
     {
+        Gate::authorize('viewAny', User::class);
+
         return User::with('tasks')->get();
     }
 
     public function getById(int $id): User {
         $user = User::with('tasks')->find($id);
+
+        Gate::authorize('view', $user);
 
         if (!$user) {
             throw new UserNotFoundException();
@@ -23,19 +28,25 @@ class UserService implements ApiServiceInterface {
     }
 
     public function create(array $values): User {
+        Gate::authorize('create', User::class);
+
         return User::create($values);
     }
 
-    public function update(int $id, array $values): User { 
+    public function update(int $id, array $values): User {
         $user = $this->getById($id);
+
+        Gate::authorize('update', $user);
         
         $user->update($values);
 
         return $user;
     }
 
-    public function destroy(int $id): bool {
+    public function delete(int $id): bool {
         $user = $this->getById($id);
+
+        Gate::authorize('delete', $user);
 
         return $user->delete();
     }

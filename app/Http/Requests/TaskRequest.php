@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\TaskStatus;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TaskRequest extends FormRequest
@@ -11,7 +12,7 @@ class TaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,13 @@ class TaskRequest extends FormRequest
      */
     public function rules(): array
     {
+        $statusValues = implode(',', array_column(TaskStatus::cases(), 'value'));
+
         return [
-            //
+            'title'     => 'required|string',
+            'status'    => 'required|in:'.$statusValues,
+            'due_date'  => 'required|date',
+            'user_id'   => 'required|exists:users,id',
         ];
     }
 }

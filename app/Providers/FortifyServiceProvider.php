@@ -24,6 +24,18 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+            public function toResponse($request)
+            {
+                $user = User::where('email', $request->email)->first();
+
+                return response()->json([
+                    'message' => 'Login Successful',
+                    'token'   => $user->createToken(SanctumToken::WEB_APP->value)->plainTextToken,
+                ]);
+            }
+        });
+
         $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
             public function toResponse($request)
             {

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
@@ -27,7 +28,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserRequest $request): JsonResponse
+    public function store(UserCreateRequest $request): JsonResponse
     {
         $user = $this->userService->create($request->validated());
 
@@ -47,7 +48,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, string $id): JsonResponse
+    public function update(UserUpdateRequest $request, string $id): JsonResponse
     {
         $user = $this->userService->update($id, $request->validated());
 

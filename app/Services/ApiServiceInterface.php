@@ -15,5 +15,5 @@ interface ApiServiceInterface
 
     public function update(int $id, array $values): Model;
 
-    public function destroy(int $id): bool;
+    public function delete(int $id): bool;
 }

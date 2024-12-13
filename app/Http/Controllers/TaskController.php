@@ -6,6 +6,7 @@ use App\Http\Requests\TaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Services\TaskService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends Controller
@@ -17,9 +18,9 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $tasks = $this->taskService->getAll();
+        $tasks = $this->taskService->search($request->get('term'), $request->get('user_id'));
 
         return response()->json(TaskResource::collection($tasks));
     }
