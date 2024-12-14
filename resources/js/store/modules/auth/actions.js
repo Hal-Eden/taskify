@@ -1,59 +1,80 @@
 import axios from "axios";
+import { handleErrors } from "../../../utils/globals";
 
 export default {
   async register(context, payload) {
-    await axios.get('/sanctum/csrf-cookie');
+    try {
+      context.commit('setIsButtonLoading', true, { root: true });
 
-    await axios.post('/api/register', {
-      email: payload.email,
-      name: payload.name,
-      password: payload.password,
-      password_confirmation: payload.password_confirmation,
-    }).then(data => {
-      context.commit('setToken', data.data.token);
+      await axios.get('/sanctum/csrf-cookie');
+
+      const response = await axios.post('/api/register', {
+        ...payload.data,
+      })
+
+      context.commit('setToken', response.data.token);
       context.commit('setAuthenticated', true);
 
-      context.dispatch('attempt');
+      await context.dispatch('attempt');
 
-      context.rootState.$router.push('/');
-    }).catch(error => {
-      console.log(error)
-    });
+      return response.data;
+    } catch (error) {
+      return handleErrors(error);
+    } finally {
+      context.commit('setIsButtonLoading', false, { root: true });
+    }
   },
   async login(context, payload) {
-    await axios.get('/sanctum/csrf-cookie');
+    try {
+      context.commit('setIsButtonLoading', true, { root: true });
 
-    await axios.post('/api/login', {
-      email: payload.email,
-      password: payload.password,
-    }).then(data => {
-      context.commit('setToken', data.data.token);
+      await axios.get('/sanctum/csrf-cookie');
+
+      const response = await axios.post('/api/login', {
+        ...payload.data,
+      })
+
+      context.commit('setToken', response.data.token);
       context.commit('setAuthenticated', true);
+      await context.dispatch('attempt');
 
-      context.dispatch('attempt');
-    }).catch(error => {
-      console.log(error)
-    });
+      return response.data
+    } catch (error) {
+      return handleErrors(error);
+    } finally {
+      context.commit('setIsButtonLoading', false, { root: true });
+    }
   },
   async logout(context) {
-    await axios.get('/sanctum/csrf-cookie');
+    try {
+      context.commit('setIsLoading', true, { root: true });
 
-    await axios.post('/api/logout').then(() => {
+      await axios.get('/sanctum/csrf-cookie');
+
+      await axios.post('/api/logout')
+
       context.commit('setToken', '');
       context.commit('setAuthenticated', false);
       context.commit('setUser', {});
-    }).catch(error => {
-      console.log(error)
-    });
+    } catch (error) {
+      return handleErrors(error);
+    } finally {
+      context.commit('setIsLoading', false, { root: true });
+    }
   },
   async attempt(context) {
-    await axios.get('/api/user').then(data => {
+    try {
+      context.commit('setIsLoading', true, { root: true });
+
+      const response = await axios.get('/api/user')
+
       context.commit('setAuthenticated', true);
-      context.commit('setUser', data.data);
-    }).catch(error => {
-      console.log(error)
+      context.commit('setUser', response.data);
+    } catch (error) {
       context.commit('setAuthenticated', false);
       context.commit('setUser', {});
-    });
+    } finally {
+      context.commit('setIsLoading', false, { root: true });
+    }
   }
 };

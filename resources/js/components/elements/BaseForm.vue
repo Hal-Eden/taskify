@@ -1,6 +1,6 @@
 <template>
     <base-card>
-        <form @submit.prevent="formHandler" class="max-w-sm mx-auto">
+        <form @submit.prevent="formHandler" class="base-form">
             <slot />
         </form>
     </base-card>
@@ -19,3 +19,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+.base-form {
+    @apply max-w-sm mx-auto;
+}
+</style>

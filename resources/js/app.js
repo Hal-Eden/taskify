@@ -12,6 +12,8 @@ import BaseCard from './components/elements/BaseCard.vue';
 import BaseForm from './components/elements/BaseForm.vue';
 import BaseInput from './components/elements/BaseInput.vue';
 import BaseHeader from './components/elements/BaseHeader.vue';
+import LoadingWrapper from './components/modules/LoadingWrapper.vue';
+import BaseIcon from './components/elements/BaseIcon.vue';
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
@@ -25,6 +27,8 @@ app.component('base-badge', BaseBadge)
     .component('base-form', BaseForm)
     .component('base-input', BaseInput)
     .component('base-header', BaseHeader)
+    .component('base-icon', BaseIcon)
+    .component('loading-wrapper', LoadingWrapper)
 
 store.dispatch('auth/attempt').then(() => {
     app.use(router)

@@ -1,7 +1,9 @@
 <template>
     <div>
         <base-header>Create User</base-header>
-        <user-form-create></user-form-create>
+        <loading-wrapper>
+            <user-form-create></user-form-create>
+        </loading-wrapper>
     </div>
 </template>
 

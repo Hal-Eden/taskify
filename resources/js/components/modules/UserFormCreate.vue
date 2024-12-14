@@ -6,6 +6,7 @@
 <script>
 import FormGroup from '../groups/FormGroup.vue';
 import { mapActions } from 'vuex';
+import { updateKeys } from '../../utils/globals';
 
 export default {
     components: { FormGroup },
@@ -18,7 +19,7 @@ export default {
                     type: 'text',
                     label: 'Name',
                     placeholder: 'User name',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: '',
@@ -26,7 +27,7 @@ export default {
                     type: 'email',
                     label: 'Email',
                     placeholder: 'User email',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: '',
@@ -34,7 +35,7 @@ export default {
                     type: 'password',
                     label: 'Password',
                     placeholder: 'User password',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: '',
@@ -42,7 +43,7 @@ export default {
                     type: 'password',
                     label: 'Password Confirmation',
                     placeholder: 'Confirmed password',
-                    error: '',
+                    error: [],
                 },
             ],
             buttonLabel: 'CREATE'
@@ -54,7 +55,12 @@ export default {
             this.inputs = inputs;
         },
         async formHandler(data) {
-            await this.create({ data });
+            const user = await this.create({ data });
+
+            if (user.errors) {
+                this.inputs = updateKeys(this.inputs, user.errors, 'error', []);
+                return;
+            }
 
             this.$router.push({ name: 'users' });
         }

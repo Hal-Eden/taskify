@@ -1,6 +1,6 @@
 <template>
-    <div class="p-4 sm:ml-64">
-        <div class="rounded-lg mt-14">
+    <div class="base-dashboard">
+        <div class="wrapper">
             <slot />
         </div>
     </div>
@@ -12,4 +12,11 @@ export default {
 </script>
 
 <style scoped>
+.base-dashboard {
+    @apply p-4 sm:ml-64;
+}
+
+.wrapper {
+    @apply rounded-lg mt-14 max-w-3xl mx-auto;
+}
 </style>

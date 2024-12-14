@@ -1,7 +1,9 @@
 <template>
     <div>
         <base-header>Edit Task</base-header>
-        <task-form-edit></task-form-edit>
+        <loading-wrapper>
+            <task-form-edit></task-form-edit>
+        </loading-wrapper>
     </div>
 </template>
 
@@ -20,7 +22,10 @@ export default {
         ...mapGetters('tasks', ['task']),
     },
     methods: {
-        ...mapActions('tasks', ['getTask'])
+        ...mapActions('tasks', ['getTask', 'clearTasks'])
+    },
+    beforeUnmount() {
+        this.clearTasks();
     }
 }
 </script>

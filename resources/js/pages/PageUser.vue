@@ -1,7 +1,9 @@
 <template>
     <div>
         <base-header>User Details</base-header>
-        <user-info-card :user="user"></user-info-card>
+        <loading-wrapper>
+            <user-info-card :user="user"></user-info-card>
+        </loading-wrapper>
     </div>
 </template>
 
@@ -21,6 +23,9 @@ export default {
     },
     methods: {
         ...mapActions('users', ['getUser', 'clearUsers'])
+    },
+    beforeUnmount() {
+        this.clearUsers();
     }
 }
 </script>

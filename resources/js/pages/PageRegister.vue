@@ -1,5 +1,6 @@
 <template>
     <div>
+        <base-header>Register</base-header>
         <register-form></register-form>
     </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="base-card">
         <slot />
     </div>
 </template>
@@ -9,3 +9,9 @@ export default {
 
 }
 </script>
+
+<style scoped>
+    .base-card {
+        @apply mx-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow
+    }
+</style>

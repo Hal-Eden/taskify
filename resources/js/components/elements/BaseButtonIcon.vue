@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" @click="buttonHandler" :disabled="disabled" :class="baseClass">
+    <button :type="type" @click="buttonHandler" :disabled="disabled" :class="classNames">
         <slot />
     </button>
 </template>
@@ -22,9 +22,9 @@ export default {
             default: 'blue'
         }
     },
-    data() {
-        return {
-            baseClass: `text-${this.color}-800 border border-${this.color}-700 hover:bg-${this.color}-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-${this.color}-300 font-smal rounded-lg text-xs p-1 text-center inline-flex items-center me-2 dark:border-${this.color}-500 dark:text-${this.color}-500 dark:hover:text-white dark:focus:ring-${this.color}-800 dark:hover:bg-${this.color}-500`,
+    computed: {
+        classNames() {
+            return `base-button-icon ${this.color}`
         }
     },
     methods: {
@@ -35,3 +35,17 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.base-button-icon {
+    @apply rounded-lg text-xs p-1 text-center inline-flex items-center mx-1 md:mx-0 md:me-2 focus:outline-none;
+}
+
+.blue {
+    @apply text-blue-800 border border-blue-700 hover:bg-blue-800 hover:text-white;
+}
+
+.red {
+    @apply text-red-800 border border-red-700 hover:bg-red-800 hover:text-white;
+}
+</style>

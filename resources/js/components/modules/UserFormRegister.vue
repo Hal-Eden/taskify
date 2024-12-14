@@ -1,11 +1,12 @@
 <template>
-    <user-form :button-label="buttonLabel" :inputs="inputs" @confirm-form="formHandler"
-        @updateInputs="inputsHandler"></user-form>
+    <form-group :button-label="buttonLabel" :inputs="inputs" @confirm-form="formHandler"
+        @updateInputs="inputsHandler"></form-group>
 </template>
 
 <script>
 import FormGroup from '../groups/FormGroup.vue';
 import { mapActions } from 'vuex';
+import { updateKeys } from '../../utils/globals';
 
 export default {
     components: { FormGroup },
@@ -18,7 +19,7 @@ export default {
                     type: 'text',
                     label: 'Name',
                     placeholder: 'User name',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: '',
@@ -26,7 +27,7 @@ export default {
                     type: 'email',
                     label: 'Email',
                     placeholder: 'User email',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: '',
@@ -34,7 +35,7 @@ export default {
                     type: 'password',
                     label: 'Password',
                     placeholder: 'User password',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: '',
@@ -42,10 +43,10 @@ export default {
                     type: 'password',
                     label: 'Password Confirmation',
                     placeholder: 'Confirmed password',
-                    error: '',
+                    error: [],
                 },
             ],
-            buttonLabel: 'UPDATE'
+            buttonLabel: 'REGISTER'
         }
     },
     methods: {
@@ -53,9 +54,14 @@ export default {
         inputsHandler(inputs) {
             this.inputs = inputs;
         },
-        async submitForm() {
-            await this.register(values);
-            
+        async formHandler(data) {
+            const user = await this.register({ data });
+
+            if (user.errors) {
+                this.inputs = updateKeys(this.inputs, user.errors, 'error', []);
+                return;
+            }
+
             this.$router.push({ name: 'dashboard' });
         }
     }

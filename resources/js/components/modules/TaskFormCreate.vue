@@ -6,6 +6,7 @@
 <script>
 import FormGroup from '../groups/FormGroup.vue';
 import { mapActions, mapGetters } from 'vuex';
+import { updateKeys } from '../../utils/globals';
 
 export default {
     components: { FormGroup },
@@ -18,7 +19,7 @@ export default {
                     type: 'text',
                     label: 'Title',
                     placeholder: 'Task title',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: 'pending',
@@ -26,7 +27,7 @@ export default {
                     type: 'select',
                     label: 'Status',
                     placeholder: 'Task Status',
-                    error: '',
+                    error: [],
                     options: [
                         {
                             value: 'pending',
@@ -47,7 +48,7 @@ export default {
                     name: 'due_date',
                     type: 'date',
                     label: 'Due date',
-                    error: '',
+                    error: [],
                 }
             ],
             buttonLabel: 'CREATE'
@@ -68,6 +69,11 @@ export default {
             data.user_id = userId;
 
             const task = await this.create({ data });
+
+            if (task.errors) {
+                this.inputs = updateKeys(this.inputs, task.errors, 'error', []);
+                return;
+            }
 
             this.$router.push({ name: 'task', params: { taskId: task.id } });
         }

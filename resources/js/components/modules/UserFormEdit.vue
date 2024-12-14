@@ -6,9 +6,13 @@
 <script>
 import FormGroup from '../groups/FormGroup.vue';
 import { mapActions, mapGetters } from 'vuex';
+import { updateKeys } from '../../utils/globals';
 
 export default {
     components: { FormGroup },
+    mounted() {
+        this.inputs = updateKeys(this.inputs, this.user, 'value');
+    },
     data() {
         return {
             inputs: [
@@ -18,7 +22,7 @@ export default {
                     type: 'text',
                     label: 'Name',
                     placeholder: 'User name',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: '',
@@ -26,7 +30,7 @@ export default {
                     type: 'email',
                     label: 'Email',
                     placeholder: 'User email',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: '',
@@ -34,7 +38,7 @@ export default {
                     type: 'password',
                     label: 'Password',
                     placeholder: 'User password',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: '',
@@ -42,23 +46,10 @@ export default {
                     type: 'password',
                     label: 'Password Confirmation',
                     placeholder: 'Confirmed password',
-                    error: '',
+                    error: [],
                 },
             ],
             buttonLabel: 'UPDATE'
-        }
-    },
-    watch: {
-        user() {
-            const newInputs = JSON.parse(JSON.stringify(this.inputs));
-
-            newInputs.map(input => {
-                input.value = this.user[input.name] || '';
-
-                return input;
-            })
-
-            this.inputs = newInputs;
         }
     },
     computed: {
@@ -77,12 +68,16 @@ export default {
                 delete data.password_confirmation;
             }
 
-            await this.update({ data, userId }).then((data) => {
-                console.log(data)
-                this.$router.push({ name: 'users' });
-            });
+            const user = await this.update({ data, userId });
+
+            if (user.errors) {
+                this.inputs = updateKeys(this.inputs, user.errors, 'error', []);
+                return;
+            }
+
+            this.$router.push({ name: 'users' });
 
         }
-    }
+    },
 }
 </script>

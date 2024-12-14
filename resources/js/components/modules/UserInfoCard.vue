@@ -1,8 +1,8 @@
 <template>
     <base-card>
-        <div class="flex flex-col items-center">
-            <h2 class="text-2xl font-bold dark:text-white mb-2 uppercase">{{ user.name }}</h2>
-            <span class="text-sm text-gray-500 dark:text-gray-400">{{ user.email }}</span>
+        <div class="user-info">
+            <h2 class="user-info__title">{{ user.name }}</h2>
+            <span class="user-info__email">{{ user.email }}</span>
             <span class="mt-1">
                 <base-badge color="dark">ID: {{ user.id }}</base-badge>
             </span>
@@ -14,8 +14,8 @@
                 <base-button color="red" @click="openModal">Delete</base-button>
             </div>
 
-            <hr class="w-full h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">
-            <h4 class="text-2xl font-bold dark:text-white">Tasks</h4>
+            <hr class="hr">
+            <h4 class="text-2xl font-bold">Tasks</h4>
             <div class="text-center mt-3" v-if="user.tasks">
                 <base-badge color="dark">Total: {{ statuses.total }}</base-badge>
                 <base-badge color="green">Completed: {{ statuses.completed }}</base-badge>
@@ -97,3 +97,21 @@ export default {
     }
 }
 </script>
+
+<style scroped>
+.user-info {
+    @apply flex flex-col items-center
+}
+
+.user-info__title {
+    @apply text-2xl font-bold dark:text-white mb-2 uppercase
+}
+
+.user-info__email {
+    @apply text-sm text-gray-50
+}
+
+.hr {
+    @apply w-full h-px my-3 bg-gray-200 border-0
+}
+</style>

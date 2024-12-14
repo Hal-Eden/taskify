@@ -6,9 +6,13 @@
 <script>
 import FormGroup from '../groups/FormGroup.vue';
 import { mapActions, mapGetters } from 'vuex';
+import { updateKeys } from '../../utils/globals';
 
 export default {
     components: { FormGroup },
+    mounted() {
+        this.inputs = updateKeys(this.inputs, this.task, 'value');
+    },
     data() {
         return {
             inputs: [
@@ -18,7 +22,7 @@ export default {
                     type: 'text',
                     label: 'Title',
                     placeholder: 'Task title',
-                    error: '',
+                    error: [],
                 },
                 {
                     value: 'pending',
@@ -26,7 +30,7 @@ export default {
                     type: 'select',
                     label: 'Status',
                     placeholder: 'Task Status',
-                    error: '',
+                    error: [],
                     options: [
                         {
                             value: 'pending',
@@ -47,23 +51,10 @@ export default {
                     name: 'due_date',
                     type: 'date',
                     label: 'Due date',
-                    error: '',
+                    error: [],
                 }
             ],
             buttonLabel: 'UPDATE'
-        }
-    },
-    watch: {
-        task() {
-            const newInputs = JSON.parse(JSON.stringify(this.inputs));
-
-            newInputs.map(input => {
-                input.value = this.task[input.name] || '';
-
-                return input;
-            })
-
-            this.inputs = newInputs;
         }
     },
     computed: {
@@ -77,10 +68,15 @@ export default {
         async formHandler(data) {
             const taskId = this.$route.params.taskId;
 
-            data.user_id = this.task.user_id;
-
+            data.user_id = this.task.user.id;
+            
             const task = await this.update({ data, taskId });
 
+            if (task.errors) {
+                this.inputs = updateKeys(this.inputs, task.errors, 'error', []);
+                return;
+            }
+            
             this.$router.push({ name: 'task', params: { taskId: task.id } });
         }
     }

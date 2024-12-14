@@ -57,9 +57,9 @@ class TaskService implements ApiServiceInterface
     public function search(string $term = null, int $userId = null): Collection|array
     {
         Gate::authorize('viewAny', [Task::class, $userId]);
-
-        return Task::when($term, function ($q) use ($term) {
-            return $q->where('like', '%' . $term . '%');
+        
+        return Task::with('user')->when($term, function ($q) use ($term) {
+            return $q->where('title', 'like', '%' . $term . '%');
         })->when($userId, function ($q) use ($userId) {
             return $q->where('user_id', $userId);
         })->get();

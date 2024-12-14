@@ -1,29 +1,19 @@
 <template>
     <div>
         <base-header>Statistics</base-header>
-        <div class="block">
-            <base-card class="inline-block">
-                <h2 class="pt-2 mb-4 text-center text-2xl font-bold dark:text-white uppercase">Tasks</h2>
-                <div class="grid grid-cols-2 gap-6">
-                    <base-label color="gray" :stat="statuses.total" label="Total"></base-label>
-                    <base-label color="blue" :stat="statuses.pending" label="Pending"></base-label>
-                    <base-label color="green" :stat="statuses.completed" label="Completed"></base-label>
-                    <base-label color="red" :stat="statuses.stale" label="Stale"></base-label>
-                </div>
-            </base-card>
-            <base-card class="inline-block" v-if="isAdmin">
-                <base-label :stat="users.length" label="Users"></base-label>
-            </base-card>
-        </div>
+        <loading-wrapper>
+            <dashboard-stats :statuses="statuses" :users="users" :is-admin="!!isAdmin"></dashboard-stats>
+        </loading-wrapper>
     </div>
 </template>
 
 <script>
-import BaseLabel from '../components/elements/BaseLabel.vue';
+import DashboardStats from '../components/modules/DashboardStats.vue';
+
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-    components: { BaseLabel },
+    components: { DashboardStats },
     data: () => ({
         defaultStatuses: {
             total: 0,
@@ -32,12 +22,13 @@ export default {
             pending: 0,
         }
     }),
-    mounted() {
+    async mounted() {
+        console.log(this.isAdmin, this.authUser, 'is admin')
         if (this.isAdmin) {
-            this.getUsers();
-            this.getTasks();
+            await this.getUsers();
+            await this.getTasks();
         } else {
-            this.getTasks({ user_id: this.authUser.id });
+            await this.getTasks({ user_id: this.authUser.id });
         }
     },
     computed: {
@@ -66,10 +57,11 @@ export default {
     },
     methods: {
         ...mapActions('tasks', ['getTasks', 'clearTasks']),
-        ...mapActions('users', ['getUsers']),
+        ...mapActions('users', ['getUsers', 'clearUsers']),
     },
     beforeUnmount() {
         this.clearTasks();
+        this.clearUsers();
     }
 }
 </script>

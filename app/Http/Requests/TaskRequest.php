@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Enums\TaskStatus;
+use App\Helpers\GlobalHelper;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TaskRequest extends FormRequest
@@ -30,5 +32,18 @@ class TaskRequest extends FormRequest
             'due_date'  => 'required|date',
             'user_id'   => 'required|exists:users,id',
         ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function failedValidation(Validator $validator): void
+    {
+        GlobalHelper::throwErrors($validator);
     }
 }

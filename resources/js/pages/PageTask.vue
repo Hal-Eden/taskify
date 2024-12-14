@@ -1,7 +1,9 @@
 <template>
     <div>
         <base-header>Task Details</base-header>
-        <task-info-card :task="task"></task-info-card>
+        <loading-wrapper>
+            <task-info-card :task="task"></task-info-card>
+        </loading-wrapper>
     </div>
 </template>
 
@@ -20,7 +22,10 @@ export default {
         ...mapGetters('tasks', ['task']),
     },
     methods: {
-        ...mapActions('tasks', ['getTask'])
+        ...mapActions('tasks', ['getTask', 'clearTasks'])
+    },
+    beforeUnmount() {
+        this.clearTasks();
     }
 }
 </script>

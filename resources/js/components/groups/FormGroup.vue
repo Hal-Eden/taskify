@@ -4,12 +4,13 @@
             :key="input.name"
             @input-action="updateInput" 
             :value="input.value" 
-            :name="input.name" 
+            :name="input.name"
             :type="input.type" 
             :label="input.label"
+            :error="input.error"
             :options="input.options"
             :placeholder="input.placeholder" />
-        <base-button type="submit">{{ buttonLabel }}</base-button>
+        <base-button :has-loading="true" type="submit">{{ buttonLabel }}</base-button>
     </base-form>
 </template>
 

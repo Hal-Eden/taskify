@@ -1,31 +1,51 @@
 <template>
-    <base-form @form-action="submitForm">
-        <base-input @input-action="updateInput" :value="email" name="email" type="text" label="Email"
-            placeholder="Your email"></base-input>
-        <base-input @input-action="updateInput" :value="password" name="password" type="password" label="Password"
-            placeholder="Your password"></base-input>
-        <base-button type="submit">LOGIN</base-button>
-    </base-form>
+    <form-group :button-label="buttonLabel" :inputs="inputs" @confirm-form="formHandler"
+        @updateInputs="inputsHandler"></form-group>
 </template>
 
 <script>
+import FormGroup from '../groups/FormGroup.vue';
 import { mapActions } from 'vuex';
+import { updateKeys } from '../../utils/globals';
 
 export default {
+    components: { FormGroup },
     data() {
         return {
-            email: '',
-            password: '',
+            inputs: [
+                {
+                    value: '',
+                    name: 'email',
+                    type: 'email',
+                    label: 'Email',
+                    placeholder: 'User email',
+                    error: [],
+                },
+                {
+                    value: '',
+                    name: 'password',
+                    type: 'password',
+                    label: 'Password',
+                    placeholder: 'User password',
+                    error: [],
+                }
+            ],
+            buttonLabel: 'LOGIN'
         }
     },
     methods: {
         ...mapActions('auth', ['login']),
-        updateInput(e, name) {
-            this[name] = e.target.value;
+        inputsHandler(inputs) {
+            this.inputs = inputs;
         },
-        async submitForm() {
-            await this.login({ email: this.email, password: this.password });
-            
+        async formHandler(data) {
+            const user = await this.login({ data });
+
+            if (user.errors) {
+                this.inputs = updateKeys(this.inputs, user.errors, 'error', []);
+                return;
+            }
+
             this.$router.push({ name: 'dashboard' });
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto mt-10">
+    <div class="container">
         <slot />
     </div>
 </template>
@@ -11,7 +11,6 @@ export default {
 
 <style scoped>
 .container {
-    width: 100%;
-    padding: 4em;
+    @apply p-4 mt-14 max-w-3xl mx-auto;
 }
 </style>

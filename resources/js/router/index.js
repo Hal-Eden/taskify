@@ -11,6 +11,7 @@ import PageTaskCreate from '../pages/PageTaskCreate.vue';
 import PageUserCreate from '../pages/PageUserCreate.vue';
 import PageUserEdit from '../pages/PageUserEdit.vue';
 import PageTaskEdit from '../pages/PageTaskEdit.vue';
+import NotFound from '../pages/NotFound.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -49,37 +50,37 @@ const router = createRouter({
       path: '/users',
       name: 'users',
       component: PageUsers,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, requiresAdmin: true }
     },
     {
       path: '/users/create',
       name: 'user-create',
       component: PageUserCreate,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, requiresAdmin: true }
     },
     {
       path: '/users/:userId',
       name: 'user',
       component: PageUser,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, requiresAdmin: true }
     },
     {
       path: '/users/:userId/edit',
       name: 'user-edit',
       component: PageUserEdit,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, requiresAdmin: true }
     },
     {
       path: '/users/:userId/tasks',
       name: 'user-tasks',
       component: PageTasks,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, requiresAdmin: true }
     },
     {
       path: '/users/:userId/tasks/create',
       name: 'task-create-user',
       component: PageTaskCreate,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, requiresAdmin: true }
     },
     {
       path: '/tasks/create',
@@ -92,18 +93,34 @@ const router = createRouter({
       name: 'task-edit',
       component: PageTaskEdit,
       meta: { requiresAuth: true }
-    }
+    },
+    {
+      path: "/404",
+      name: 'not-found',
+      component: NotFound,
+    },
+    {
+      path: "/:catchAll(.*)",
+      redirect: { name: 'not-found'},
+    },
   ]
 })
 
-router.beforeEach(function(to, _, next) {
+router.beforeEach(function (to, _, next) {
   const isAuthenticated = store.getters['auth/isAuthenticated'];
+  const isAdmin = store.getters['auth/isAdmin'];
+  console.log(isAdmin, isAuthenticated)
 
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/login');
+    next({ name: 'login' });
   } else if (to.meta.guest && isAuthenticated) {
-    next('/');
+    next({ name: 'dashboard' });
+  } else if (to.meta.requiresAdmin && !isAdmin) {
+    console.log('next')
+
+    next({ name: 'not-found' });
   } else {
+    // console.log('next')
     next();
   }
 });

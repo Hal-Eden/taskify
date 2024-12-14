@@ -1,12 +1,12 @@
 <template>
     <base-card>
         <div class="flex flex-col items-center">
-            <h2 class="text-2xl font-bold dark:text-white mb-2 uppercase">{{ task.title }}</h2>
-            <span class="text-sm text-gray-500 dark:text-gray-400">{{ task.due_date }}</span>
+            <h2 class="title">{{ task.title }}</h2>
+            <span class="info-line">{{ task.due_date }}</span>
             <span class="mt-1">
                 <base-badge :color="colorByStatus(task.status)">{{ task.status }}</base-badge>
             </span>
-            <span v-if="isAdmin && task.user_id" class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            <span v-if="isAdmin && task.user_id" class="mt-1 info-line">
                 User:
                 <router-link :to="{ name: 'user', params: { userId: task.user_id } }">{{ task.user.name }}</router-link>
             </span>
@@ -35,7 +35,7 @@ export default {
     },
     methods: {
         ...mapActions('tasks', ['delete']),
-        ...mapActions(['toggleModal', 'updateModalParams']),
+        ...mapActions(['toggleModal']),
         openModal() {
             this.toggleModal(true);
         },
@@ -66,3 +66,13 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.title {
+    @apply text-2xl font-bold dark:text-white mb-2 uppercase
+}
+
+.info-line {
+    @apply text-sm text-gray-500 dark:text-gray-400
+}
+</style>

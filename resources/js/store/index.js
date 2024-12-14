@@ -13,24 +13,37 @@ const store = createStore({
   state() {
     return {
       modalIsOpen: false,
-      modalParams: {},
+      sidebarIsOpen: false,
+      isLoading: false,
+      isButtonLoading: false,
     };
   },
   getters: {
     modalIsOpen(state) {
       return state.modalIsOpen;
     },
-    modalParams(state) {
-      return state.modalParams;
+    sidebarIsOpen(state) {
+      return state.sidebarIsOpen;
+    },
+    isLoading(state) {
+      return state.isLoading;
+    },
+    isButtonLoading(state) {
+      return state.isButtonLoading;
     },
   },
   mutations: {
     setModalIsOpen(state, payload) {
-      console.log('set', payload)
       state.modalIsOpen = payload;
     },
-    setModalParams(state, payload) {
-      state.modalParams = payload;
+    setSidebarIsOpen(state, payload) {
+      state.sidebarIsOpen = payload;
+    },
+    setIsLoading(state, payload) {
+      state.isLoading = payload;
+    },
+    setIsButtonLoading(state, payload) {
+      return state.isButtonLoading = payload;
     },
   },
   actions: {
@@ -38,8 +51,17 @@ const store = createStore({
       console.log('toggle')
       context.commit('setModalIsOpen', payload);
     },
-    updateModalParams(context, payload) {
-      context.commit('updateModalParams', payload);
+    toggleSidebar(context) {
+      context.commit('setSidebarIsOpen', !context.getters.sidebarIsOpen);
+    },
+    setSidebarState(context, payload) {
+      context.commit('setSidebarIsOpen', payload);
+    },
+    toggleLoading(context, payload) {
+      context.commit('isLoading', payload);
+    },
+    toggleButtonLoading(context, payload) {
+      context.commit('isButtonLoading', payload);
     },
   }
 });

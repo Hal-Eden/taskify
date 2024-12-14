@@ -1,7 +1,9 @@
 <template>
     <div>
-        <base-header>User Edit: {{ user.name }}</base-header>
-        <user-form-edit></user-form-edit>
+        <base-header>Edit User</base-header>
+        <loading-wrapper>
+            <user-form-edit></user-form-edit>
+        </loading-wrapper>
     </div>
 </template>
 
@@ -21,6 +23,9 @@ export default {
     },
     methods: {
         ...mapActions('users', ['getUser', 'clearUsers'])
+    },
+    beforeUnmount() {
+        this.clearUsers();
     }
 }
 </script>

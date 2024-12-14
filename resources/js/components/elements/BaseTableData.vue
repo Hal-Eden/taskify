@@ -1,5 +1,5 @@
 <template>
-    <td class="px-6 py-4">
+    <td class="base-table-data">
         <slot />
     </td>
 
@@ -14,3 +14,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+.base-table-data {
+    @apply px-3 py-4 overflow-hidden whitespace-nowrap
+}
+</style>
