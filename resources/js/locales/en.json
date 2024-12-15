@@ -65,7 +65,7 @@
         "loading": "Loading..."
     },
     "pages": {
-        "not_found": "",
+        "not_found": "404: NOT FOUND",
         "statistics": "Statistics",
         "login": "Login",
         "register": "Register",
