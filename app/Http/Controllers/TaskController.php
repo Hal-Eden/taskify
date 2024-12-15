@@ -15,15 +15,14 @@ use Symfony\Component\HttpFoundation\Response;
  *      title="L5 OpenApi",
  *      description="L5 Swagger OpenApi description"
  * )
+ *
  * @OA\SecurityScheme(
  *      type="http",
  *      securityScheme="bearerAuth",
  *      scheme="bearer",
  *      bearerFormat="JWT"
  * )
- *
  */
-
 class TaskController extends Controller
 {
     public function __construct(private TaskService $taskService) {}
@@ -36,39 +35,49 @@ class TaskController extends Controller
      *      summary="Get list of tasks",
      *      description="Returns list of tasks",
      *      security={{"sanctum":{}}},
+     *
      *      @OA\Parameter(
      *          name="term",
      *          description="Task searchable term",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="statuses",
      *          description="Task filtering status",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *            type="array",
+     *
      *            @OA\Items()
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="user_id",
      *          description="Task filtering by User ID",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/Task"))
      *       ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -94,15 +103,20 @@ class TaskController extends Controller
      *      summary="Store new Task",
      *      description="Returns Task data",
      *      security={{"sanctum":{}}},
+     *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\JsonContent(ref="#/components/schemas/StoreTaskRequest")
      *      ),
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(ref="#/components/schemas/Task")
      *       ),
+     *
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
@@ -136,20 +150,25 @@ class TaskController extends Controller
      *      summary="Get Task information",
      *      description="Returns Task data",
      *      security={{"sanctum":{}}},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Task id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(ref="#/components/schemas/Task")
      *       ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -175,24 +194,31 @@ class TaskController extends Controller
      *      summary="Update existing Task",
      *      description="Returns updated Task data",
      *      security={{"sanctum":{}}},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Task id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\JsonContent(ref="#/components/schemas/UpdateTaskRequest")
      *      ),
+     *
      *      @OA\Response(
      *          response=202,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(ref="#/components/schemas/Task")
      *       ),
+     *
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
@@ -226,20 +252,25 @@ class TaskController extends Controller
      *      summary="Delete existing Task",
      *      description="Deletes a record and returns no content",
      *      security={{"sanctum":{}}},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Task id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=204,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent()
      *       ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",

@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $user = User::factory()->create([
-            'name'      => 'Test User',
-            'email'     => 'test@example.com',
-            'password'  => Hash::make('testPassword'),
-            'is_admin'  => true,
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => Hash::make('testPassword'),
+            'is_admin' => true,
         ]);
 
         $user->createToken(SanctumToken::WEB_APP->value);

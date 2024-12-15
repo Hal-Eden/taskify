@@ -12,9 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    public function __construct(private UserService $userService)
-    {
-    }
+    public function __construct(private UserService $userService) {}
 
     /**
      * @OA\Get(
@@ -24,20 +22,25 @@ class UserController extends Controller
      *      summary="Get list of Users",
      *      description="Returns list of Users",
      *      security={{"sanctum":{}}},
+     *
      *      @OA\Parameter(
      *          name="term",
      *          description="User searchable term",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/User"))
      *       ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -55,7 +58,7 @@ class UserController extends Controller
         return response()->json(UserResource::collection($users));
     }
 
-   /**
+    /**
      * @OA\Post(
      *      path="/api/users",
      *      operationId="storeUser",
@@ -63,15 +66,20 @@ class UserController extends Controller
      *      summary="Store new User",
      *      description="Returns User data",
      *      security={{"sanctum":{}}},
+     *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\JsonContent(ref="#/components/schemas/StoreUserRequest")
      *      ),
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(ref="#/components/schemas/User")
      *       ),
+     *
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
@@ -93,7 +101,7 @@ class UserController extends Controller
     public function store(UserCreateRequest $request): JsonResponse
     {
         $user = $this->userService->create($request->validated());
-        
+
         return response()->json($user);
     }
 
@@ -105,20 +113,25 @@ class UserController extends Controller
      *      summary="Get User information",
      *      description="Returns User data",
      *      security={{"sanctum":{}}},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(ref="#/components/schemas/User")
      *       ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -144,24 +157,31 @@ class UserController extends Controller
      *      summary="Update existing User",
      *      description="Returns updated User data",
      *      security={{"sanctum":{}}},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\JsonContent(ref="#/components/schemas/StoreUserRequest")
      *      ),
+     *
      *      @OA\Response(
      *          response=202,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(ref="#/components/schemas/User")
      *       ),
+     *
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
@@ -195,20 +215,25 @@ class UserController extends Controller
      *      summary="Delete existing User",
      *      description="Deletes a record and returns no content",
      *      security={{"sanctum":{}}},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=204,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent()
      *       ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",

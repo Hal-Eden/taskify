@@ -10,7 +10,7 @@ class TaskPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user, int $userId = null): bool
+    public function viewAny(User $user, ?int $userId = null): bool
     {
         return $user->is_admin || $user->id === $userId;
     }
@@ -26,7 +26,7 @@ class TaskPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user, int $taskUserId = null): bool
+    public function create(User $user, ?int $taskUserId = null): bool
     {
         return $user->is_admin || $user->id === $taskUserId;
     }

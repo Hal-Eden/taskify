@@ -1,8 +1,8 @@
 export default {
-  tasks(state) {
-    return state.tasks;
-  },
-  task(state) {
-    return state.task;
-  },
+    tasks(state) {
+        return state.tasks;
+    },
+    task(state) {
+        return state.task;
+    },
 };

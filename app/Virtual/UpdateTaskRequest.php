@@ -10,7 +10,6 @@ namespace App\Virtual;
  *      required={"title"}
  * )
  */
-
 class UpdateTaskRequest
 {
     /**

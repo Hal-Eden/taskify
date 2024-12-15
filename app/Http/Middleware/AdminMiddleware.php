@@ -15,8 +15,8 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        abort_if(!$request->user()->is_admin, Response::HTTP_UNAUTHORIZED);
-        
+        abort_if(! $request->user()->is_admin, Response::HTTP_UNAUTHORIZED);
+
         return $next($request);
     }
 }

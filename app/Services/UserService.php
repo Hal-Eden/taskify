@@ -22,8 +22,8 @@ class UserService implements ApiServiceInterface
 
         Gate::authorize('view', $user);
 
-        if (!$user) {
-            throw new UserNotFoundException();
+        if (! $user) {
+            throw new UserNotFoundException;
         }
 
         return $user;
@@ -56,13 +56,13 @@ class UserService implements ApiServiceInterface
         return $user->delete();
     }
 
-    public function search(string $term = null): Collection|array
+    public function search(?string $term = null): Collection|array
     {
         Gate::authorize('viewAny', User::class);
 
         return User::with('tasks')->when($term, function ($q) use ($term) {
-            return $q->where('name', 'like', '%' . $term . '%')
-                ->orWhere('email', 'like', '%' . $term . '%');
+            return $q->where('name', 'like', '%'.$term.'%')
+                ->orWhere('email', 'like', '%'.$term.'%');
         })->get();
     }
 }

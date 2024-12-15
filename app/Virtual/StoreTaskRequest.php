@@ -10,7 +10,6 @@ namespace App\Virtual;
  *      required={"title"}
  * )
  */
-
 class StoreTaskRequest
 {
     /**
@@ -55,7 +54,7 @@ class StoreTaskRequest
      *      example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $user_id;
 }

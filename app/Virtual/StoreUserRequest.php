@@ -10,7 +10,6 @@ namespace App\Virtual;
  *      required={"name","email","password","password_confirmation"}
  * )
  */
-
 class StoreUserRequest
 {
     /**

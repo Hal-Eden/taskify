@@ -27,18 +27,16 @@ class TaskRequest extends FormRequest
         $statusValues = implode(',', array_column(TaskStatus::cases(), 'value'));
 
         return [
-            'title'     => 'required|string',
-            'status'    => 'required|in:'.$statusValues,
-            'due_date'  => 'required|date',
-            'user_id'   => 'required|exists:users,id',
+            'title' => 'required|string',
+            'status' => 'required|in:'.$statusValues,
+            'due_date' => 'required|date',
+            'user_id' => 'required|exists:users,id',
         ];
     }
 
     /**
      * Handle a failed validation attempt.
      *
-     * @param  \Illuminate\Contracts\Validation\Validator  $validator
-     * @return void
      *
      * @throws \Illuminate\Validation\ValidationException
      */

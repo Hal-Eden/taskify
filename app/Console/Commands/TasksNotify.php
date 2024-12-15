@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Enums\TaskStatus;
 use App\Mail\DueTaskNotification;
-use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;

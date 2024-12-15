@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-interface ApiServiceInterface 
+interface ApiServiceInterface
 {
     public function getAll(): Collection|array;
 
@@ -18,5 +18,4 @@ interface ApiServiceInterface
     public function delete(int $id): bool;
 
     public function search(): Collection|array;
-
 }

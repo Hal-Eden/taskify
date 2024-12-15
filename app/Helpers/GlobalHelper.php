@@ -15,7 +15,7 @@ class GlobalHelper
     public static function throwErrors($validator)
     {
         throw new HttpResponseException(response()->json([
-            'errors' => $validator->errors()
+            'errors' => $validator->errors(),
         ], Response::HTTP_UNPROCESSABLE_ENTITY));
     }
 }

@@ -20,8 +20,8 @@ class TaskService implements ApiServiceInterface
 
         Gate::authorize('view', $task);
 
-        if (!$task) {
-            throw new TaskNotFoundException();
+        if (! $task) {
+            throw new TaskNotFoundException;
         }
 
         return $task;
@@ -54,12 +54,12 @@ class TaskService implements ApiServiceInterface
         return $task->delete();
     }
 
-    public function search(string $term = null, array $statuses = null, int $userId = null): Collection|array
+    public function search(?string $term = null, ?array $statuses = null, ?int $userId = null): Collection|array
     {
         Gate::authorize('viewAny', [Task::class, $userId]);
-        
+
         return Task::with('user')->when($term, function ($q) use ($term) {
-            return $q->where('title', 'like', '%' . $term . '%');
+            return $q->where('title', 'like', '%'.$term.'%');
         })->when($userId, function ($q) use ($userId) {
             return $q->where('user_id', $userId);
         })->when($statuses, function ($q) use ($statuses) {
