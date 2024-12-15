@@ -1,8 +1,8 @@
 <template>
     <button :type="type" @click="buttonHandler" :disabled="disabled || isButtonLoading" :class="classNames">
         <template v-if="isButtonLoading && hasLoading">
-            <base-icon icon="button-loader"></base-icon>
-            Loading...
+            <base-icon class="mr-2 animate-spin" icon="button-loader"></base-icon>
+            {{ $t('buttons.loading') }}
         </template>
         <slot v-else />
     </button>
@@ -10,8 +10,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-
-mapGetters
 
 export default {
     emits: ['button-action'],
@@ -50,7 +48,7 @@ export default {
 
 <style scoped>
     .base-button {
-        @apply py-2.5 px-5 me-2 mb-2 text-sm font-medium rounded-lg;
+        @apply py-2.5 px-5 me-2 mb-2 text-sm font-medium rounded-lg whitespace-nowrap inline-flex;
     }
 
     .default {

@@ -1,5 +1,5 @@
 <template>
-    <base-header>Login</base-header>
+    <base-header>{{ $t('pages.login') }}</base-header>
     <login-form></login-form>
 </template>
 

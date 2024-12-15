@@ -1,8 +1,7 @@
 <template>
-    <div :class="classNames"
+    <div class="base-alert"
         role="alert">
         <base-icon icon="alert-info"></base-icon>
-        <span class="sr-only">Info</span>
         <div>
             <span class="font-medium">{{ title }}</span> <slot />
         </div>
@@ -16,11 +15,6 @@ export default {
         title: {
             type: String,
             default: 'gray',
-        }
-    },
-    computed: {
-        classNames() {
-            return `base-alert ${this.color}`;
         }
     },
 }

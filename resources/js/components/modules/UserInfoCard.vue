@@ -4,30 +4,30 @@
             <h2 class="user-info__title">{{ user.name }}</h2>
             <span class="user-info__email">{{ user.email }}</span>
             <span class="mt-1">
-                <base-badge color="dark">ID: {{ user.id }}</base-badge>
+                <base-badge color="dark">{{ this.$t('users.id') }} {{ user.id }}</base-badge>
             </span>
-            
+
             <div class="flex mt-6">
                 <router-link :to="{ name: 'user-edit', params: { userId: user.id } }">
                     <base-button>Edit</base-button>
                 </router-link>
-                <base-button color="red" @click="openModal">Delete</base-button>
+                <base-button color="red" @click="openModal">{{ this.$t('users.delete') }}</base-button>
             </div>
 
             <hr class="hr">
-            <h4 class="text-2xl font-bold">Tasks</h4>
+            <h4 class="text-2xl font-bold">{{ this.$t('users.tasks') }}</h4>
             <div class="text-center mt-3" v-if="user.tasks">
-                <base-badge color="dark">Total: {{ statuses.total }}</base-badge>
-                <base-badge color="green">Completed: {{ statuses.completed }}</base-badge>
-                <base-badge color="red">Stale: {{ statuses.stale }}</base-badge>
-                <base-badge color="default">Pending: {{ statuses.pending }}</base-badge>
+                <base-badge color="dark">{{ this.$t('users.total') }} {{ statuses.total }}</base-badge>
+                <base-badge color="green">{{ this.$t('users.completed') }} {{ statuses.completed }}</base-badge>
+                <base-badge color="red">{{ this.$t('users.stale') }} {{ statuses.stale }}</base-badge>
+                <base-badge color="default">{{ this.$t('users.pending') }} {{ statuses.pending }}</base-badge>
             </div>
             <div class="flex mt-6">
                 <router-link :to="{ name: 'user-tasks', params: { userId: user.id } }">
-                    <base-button>View</base-button>
+                    <base-button>{{ this.$t('users.view') }}</base-button>
                 </router-link>
                 <router-link :to="{ name: 'task-create-user', params: { userId: user.id } }">
-                    <base-button>Create</base-button>
+                    <base-button>{{ this.$t('users.create') }}</base-button>
                 </router-link>
             </div>
         </div>
@@ -64,7 +64,7 @@ export default {
         async deleteUser() {
             const userId = this.$route.params.userId;
 
-            await this.delete(userId).then(() => {
+            await this.delete({ userId }).then(() => {
                 this.$router.push({ name: 'users' });
             }).catch(error => {
                 console.log(error);
@@ -100,15 +100,15 @@ export default {
 
 <style scroped>
 .user-info {
-    @apply flex flex-col items-center
+    @apply flex flex-col items-center select-none
 }
 
 .user-info__title {
-    @apply text-2xl font-bold dark:text-white mb-2 uppercase
+    @apply text-2xl font-bold mb-2 uppercase
 }
 
 .user-info__email {
-    @apply text-sm text-gray-50
+    @apply text-sm
 }
 
 .hr {

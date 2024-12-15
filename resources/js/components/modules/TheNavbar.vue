@@ -3,20 +3,19 @@
     <div class="nav__wrapper">
       <div class="nav__container">
         <div class="nav__brand">
-          <button @click="toggleSidebar()" aria-controls="logo-sidebar" type="button" class="burger">
-            <span class="sr-only">Open sidebar</span>
+          <button v-if="isAuthenticated" @click="toggleSidebar()" aria-controls="logo-sidebar" type="button" class="burger">
             <base-icon icon="burger"></base-icon>
           </button>
           <router-link class="brand-link" :to="{ name: 'dashboard' }">
-            <span class="brand-link__label">Taskify</span>
+            <span class="brand-link__label">{{ $t('navbar.brand') }}</span>
           </router-link>
         </div>
         <div class="flex items-center uppercase">
-          <p v-if="isAuthenticated">
+          <p class="mr-2" v-if="isAuthenticated">
             {{ authUser.name }}
           </p>
-          <router-link v-else-if="$route.name === 'register'" :to="{ name: 'login' }">Login</router-link>
-          <router-link v-else :to="{ name: 'register' }">Register</router-link>
+          <router-link v-else-if="$route.name === 'register'" :to="{ name: 'login' }">{{ $t('navbar.login') }}</router-link>
+          <router-link v-else :to="{ name: 'register' }">{{ $t('navbar.register') }}</router-link>
         </div>
       </div>
     </div>
@@ -28,9 +27,6 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-  mounted() {
-    console.log(this.$route, this.$router)
-  },
   computed: {
     ...mapGetters('auth', ['authUser', 'isAuthenticated']),
   },

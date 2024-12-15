@@ -12,9 +12,6 @@ import { debounce } from '../../utils/globals';
 
 export default {
     emits: ['handle-search'],
-    mounted() {
-        console.log('mounted')
-    },
     props: {
         term: {
             type: String,

@@ -4,12 +4,13 @@
         <base-label color="blue" :stat="statuses.pending" label="Pending"></base-label>
         <base-label color="green" :stat="statuses.completed" label="Completed"></base-label>
         <base-label color="red" :stat="statuses.stale" label="Stale"></base-label>
-        <base-label color="gray" :stat="users.length" label="Users"></base-label>
+        <base-label v-if="isAdmin" color="gray" :stat="users.length" label="Users"></base-label>
     </div>
 </template>
 
 <script>
 import BaseLabel from '../elements/BaseLabel.vue';
+import { mapGetters } from 'vuex';
 
 export default {
     components: { BaseLabel },

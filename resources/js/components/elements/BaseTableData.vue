@@ -17,6 +17,6 @@ export default {
 
 <style scoped>
 .base-table-data {
-    @apply px-3 py-4 overflow-hidden whitespace-nowrap
+    @apply px-3 md:px-2 py-4 overflow-hidden whitespace-nowrap
 }
 </style>

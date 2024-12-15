@@ -1,6 +1,6 @@
 <template>
     <div>
-        <base-header>Task Details</base-header>
+        <base-header>{{ $t('pages.task') }}</base-header>
         <loading-wrapper>
             <task-info-card :task="task"></task-info-card>
         </loading-wrapper>

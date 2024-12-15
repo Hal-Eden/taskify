@@ -54,7 +54,7 @@ class TaskService implements ApiServiceInterface
         return $task->delete();
     }
 
-    public function search(string $term = null, int $userId = null): Collection|array
+    public function search(string $term = null, array $statuses = null, int $userId = null): Collection|array
     {
         Gate::authorize('viewAny', [Task::class, $userId]);
         
@@ -62,6 +62,8 @@ class TaskService implements ApiServiceInterface
             return $q->where('title', 'like', '%' . $term . '%');
         })->when($userId, function ($q) use ($userId) {
             return $q->where('user_id', $userId);
+        })->when($statuses, function ($q) use ($statuses) {
+            return $q->whereIn('status', $statuses);
         })->get();
     }
 }

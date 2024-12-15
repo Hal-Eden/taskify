@@ -3,41 +3,41 @@
       <div class="sidebar__links">
          <ul class="space-y-2 font-medium">
             <li>
-               <router-link class="sidebar__link" :to="{ name: 'dashboard' }">
+               <router-link @click="closeSidebar" class="sidebar__link" :to="{ name: 'dashboard' }">
                   <base-icon icon="stats"></base-icon>
-                  <span class="ms-3">Stats</span>
+                  <span class="ms-3">{{ $t('sidebar.stats') }}</span>
                </router-link>
             </li>
             <li>
-               <router-link class="sidebar__link" :to="{ name: 'tasks' }">
+               <router-link @click="closeSidebar" class="sidebar__link" :to="{ name: 'tasks' }">
                   <base-icon icon="tasks"></base-icon>
-                  <span class="ms-3">Tasks</span>
+                  <span class="ms-3">{{ $t('sidebar.tasks') }}</span>
                </router-link>
             </li>
             <li v-if="isAdmin">
-               <router-link class="sidebar__link" :to="{ name: 'users' }">
+               <router-link @click="closeSidebar" class="sidebar__link" :to="{ name: 'users' }">
                   <base-icon icon="users"></base-icon>
-                  <span class="ms-3">Users</span>
+                  <span class="ms-3">{{ $t('sidebar.users') }}</span>
                </router-link>
             </li>
             <hr>
             <li v-if="isAdmin">
-               <router-link class="sidebar__link" :to="{ name: 'user-create' }">
+               <router-link @click="closeSidebar" class="sidebar__link" :to="{ name: 'user-create' }">
                   <base-icon icon="new-user"></base-icon>
-                  <span class="ms-3">Create User</span>
+                  <span class="ms-3">{{ $t('sidebar.create_user') }}</span>
                </router-link>
             </li>
             <li>
-               <router-link class="sidebar__link" :to="{ name: 'task-create' }">
+               <router-link @click="closeSidebar" class="sidebar__link" :to="{ name: 'task-create' }">
                   <base-icon icon="calendar"></base-icon>
-                  <span class="ms-3">Create Task</span>
+                  <span class="ms-3">{{ $t('sidebar.create_task') }}</span>
                </router-link>
             </li>
             <hr>
             <li>
                <div @click="logoutUser" class="sidebar__link cursor-pointer" :to="{ name: 'user-create' }">
                   <base-icon icon="door"></base-icon>
-                  <span class="ms-3">Logout</span>
+                  <span class="ms-3">{{ $t('sidebar.logout') }}</span>
                </div>
             </li>
          </ul>
@@ -64,12 +64,16 @@ export default {
    },
    methods: {
       ...mapActions('auth', ['logout']),
-      ...mapActions(['toggleSidebar']),
+      ...mapActions(['toggleSidebar', 'setSidebarState']),
       async logoutUser() {
          await this.logout();
+         this.closeSidebar();
 
          this.$router.push({ name: 'login' });
       },
+      closeSidebar() {
+         this.setSidebarState(false);
+      }
    },
 }
 </script>

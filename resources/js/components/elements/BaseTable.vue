@@ -2,8 +2,8 @@
     <table class="base-table">
         <thead class="base-table__head">
             <tr>
-                <th v-for="column in columns" :key="column" scope="col" :class="`px-3 py-3 text-base ${column.classes}`">
-                    {{ column.label }}
+                <th v-for="column in columns" :key="column" scope="col" :class="`px-3 md:px-2 py-3 text-base ${column.classes}`">
+                    {{ $t(column.label) }}
                 </th>
             </tr>
         </thead>

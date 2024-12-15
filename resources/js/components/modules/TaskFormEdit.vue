@@ -1,5 +1,5 @@
 <template>
-    <form-group :button-label="buttonLabel" :inputs="inputs" @confirm-form="formHandler"
+    <form-group :button-label="$t(buttonLabel)" :inputs="inputs" @confirm-form="formHandler"
         @updateInputs="inputsHandler"></form-group>
 </template>
 
@@ -20,29 +20,28 @@ export default {
                     value: '',
                     name: 'title',
                     type: 'text',
-                    label: 'Title',
-                    placeholder: 'Task title',
+                    label: 'tasks.title_label',
+                    placeholder: 'tasks.title_placeholder',
                     error: [],
                 },
                 {
                     value: 'pending',
                     name: 'status',
                     type: 'select',
-                    label: 'Status',
-                    placeholder: 'Task Status',
+                    label: 'tasks.status_label',
                     error: [],
                     options: [
                         {
                             value: 'pending',
-                            label: 'Pending',
+                            label: 'tasks.status_pending',
                         },
                         {
                             value: 'completed',
-                            label: 'Completed',
+                            label: 'tasks.status_completed',
                         },
                         {
                             value: 'stale',
-                            label: 'Stale',
+                            label: 'tasks.status_stale',
                         }
                     ]
                 },
@@ -50,11 +49,11 @@ export default {
                     value: '',
                     name: 'due_date',
                     type: 'date',
-                    label: 'Due date',
+                    label: 'tasks.due_date_label',
                     error: [],
                 }
             ],
-            buttonLabel: 'UPDATE'
+            buttonLabel: 'tasks.update'
         }
     },
     computed: {
@@ -69,14 +68,14 @@ export default {
             const taskId = this.$route.params.taskId;
 
             data.user_id = this.task.user.id;
-            
+
             const task = await this.update({ data, taskId });
 
             if (task.errors) {
                 this.inputs = updateKeys(this.inputs, task.errors, 'error', []);
                 return;
             }
-            
+
             this.$router.push({ name: 'task', params: { taskId: task.id } });
         }
     }

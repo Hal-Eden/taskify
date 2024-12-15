@@ -5,6 +5,8 @@ import router from './router';
 import store from './store/index.js';
 import App from './App.vue';
 import axios from 'axios'
+import { createI18n } from 'vue-i18n'
+import en from './locales/en.json'
 
 import BaseBadge from './components/elements/BaseBadge.vue';
 import BaseButton from './components/elements/BaseButton.vue';
@@ -17,7 +19,14 @@ import BaseIcon from './components/elements/BaseIcon.vue';
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
-axios.defaults.baseURL = 'http://127.0.0.1:8001';
+
+const i18n = createI18n({
+    legacy: false,
+    locale: 'en',
+    messages: {
+        en
+    }
+})
 
 const app = createApp(App);
 
@@ -33,5 +42,6 @@ app.component('base-badge', BaseBadge)
 store.dispatch('auth/attempt').then(() => {
     app.use(router)
         .use(store)
+        .use(i18n)
         .mount("#app");
 })

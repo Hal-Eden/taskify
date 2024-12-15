@@ -48,7 +48,6 @@ const store = createStore({
   },
   actions: {
     toggleModal(context, payload) {
-      console.log('toggle')
       context.commit('setModalIsOpen', payload);
     },
     toggleSidebar(context) {

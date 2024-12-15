@@ -1,6 +1,6 @@
 <template>
     <div>
-        <base-header>Statistics</base-header>
+        <base-header>{{ $t('pages.statistics') }}</base-header>
         <loading-wrapper>
             <dashboard-stats :statuses="statuses" :users="users" :is-admin="!!isAdmin"></dashboard-stats>
         </loading-wrapper>
@@ -23,7 +23,6 @@ export default {
         }
     }),
     async mounted() {
-        console.log(this.isAdmin, this.authUser, 'is admin')
         if (this.isAdmin) {
             await this.getUsers();
             await this.getTasks();

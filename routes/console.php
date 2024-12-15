@@ -6,4 +6,4 @@ use Illuminate\Support\Facades\Schedule;
 //     $this->comment(Inspiring::quote());
 // })->purpose('Display an inspiring quote')->hourly();
 
-Schedule::command('tasks:notify')->everyTwoMinutes();
+Schedule::command('tasks:notify')->daily();

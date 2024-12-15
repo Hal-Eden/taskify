@@ -109,18 +109,14 @@ const router = createRouter({
 router.beforeEach(function (to, _, next) {
   const isAuthenticated = store.getters['auth/isAuthenticated'];
   const isAdmin = store.getters['auth/isAdmin'];
-  console.log(isAdmin, isAuthenticated)
 
   if (to.meta.requiresAuth && !isAuthenticated) {
     next({ name: 'login' });
   } else if (to.meta.guest && isAuthenticated) {
     next({ name: 'dashboard' });
   } else if (to.meta.requiresAdmin && !isAdmin) {
-    console.log('next')
-
     next({ name: 'not-found' });
   } else {
-    // console.log('next')
     next();
   }
 });

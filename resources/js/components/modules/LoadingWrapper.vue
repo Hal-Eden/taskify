@@ -1,7 +1,6 @@
 <template>
     <div class="loading-wrapper" v-if="isLoading && !isLoaded">
         <base-icon icon="loader"></base-icon>
-        <span class="sr-only">Loading...</span>
     </div>
     <template v-else>
         <slot />

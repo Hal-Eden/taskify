@@ -1,6 +1,6 @@
 <template>
     <div>
-        <base-header>Create Task</base-header>
+        <base-header>{{ $t('pages.create_task') }}</base-header>
         <task-form-create></task-form-create>
     </div>
 </template>

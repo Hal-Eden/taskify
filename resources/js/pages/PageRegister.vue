@@ -1,6 +1,6 @@
 <template>
     <div>
-        <base-header>Register</base-header>
+        <base-header>{{ $t('pages.register') }}</base-header>
         <register-form></register-form>
     </div>
 </template>

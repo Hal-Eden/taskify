@@ -25,6 +25,16 @@
                         }
                     },
                     {
+                        "name": "statuses",
+                        "in": "query",
+                        "description": "Task filtering status",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    },
+                    {
                         "name": "user_id",
                         "in": "query",
                         "description": "Task filtering by User ID",

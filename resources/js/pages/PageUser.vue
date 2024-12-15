@@ -1,6 +1,6 @@
 <template>
     <div>
-        <base-header>User Details</base-header>
+        <base-header>{{ $t('pages.user') }}</base-header>
         <loading-wrapper>
             <user-info-card :user="user"></user-info-card>
         </loading-wrapper>

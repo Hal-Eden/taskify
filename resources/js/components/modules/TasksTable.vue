@@ -13,12 +13,12 @@
                 <base-badge class="badge-mobile" :color="colorByStatus(item.status)">{{
                     item.status.slice(0, 1) }}</base-badge>
             </base-table-data>
-            <base-table-data class="hidden md:table-cell">
+            <base-table-data class="hidden md:table-cell w-30">
                 {{ item.due_date }}
             </base-table-data>
             <base-table-data class="w-10 column-center">
                 <router-link :to="{ name: 'task-edit', params: { taskId: item.id } }">
-                    <base-button-icon @button-action="openModal(item.id)" color="blue">
+                    <base-button-icon color="blue">
                         <base-icon icon="edit"></base-icon>
                     </base-button-icon>
                 </router-link>
@@ -52,18 +52,18 @@ export default {
     data: () => ({
         columns: [
             {
-                label: 'Title',
+                label: 'tasks.title_label',
             },
             {
-                label: 'State',
+                label: 'tasks.status_label',
                 classes: 'text-center md:text-left',
             },
             {
-                label: 'Due date',
+                label: 'tasks.due_date_label',
                 classes: 'hidden md:table-cell',
             },
             {
-                label: 'Actions',
+                label: 'tasks.actions',
                 classes: 'text-center md:text-left',
             }
         ],

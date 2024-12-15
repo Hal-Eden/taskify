@@ -34,6 +34,7 @@ export default {
             const inputIndex = oldInputs.findIndex(i => i.name === name);
 
             oldInputs[inputIndex].value = e.target.value;
+            oldInputs[inputIndex].error = [];
 
             this.$emit('update-inputs', oldInputs);
         },

@@ -17,29 +17,28 @@ export default {
                     value: '',
                     name: 'title',
                     type: 'text',
-                    label: 'Title',
-                    placeholder: 'Task title',
+                    label: 'tasks.title_label',
+                    placeholder: 'tasks.title_placeholder',
                     error: [],
                 },
                 {
                     value: 'pending',
                     name: 'status',
                     type: 'select',
-                    label: 'Status',
-                    placeholder: 'Task Status',
+                    label: 'tasks.status_label',
                     error: [],
                     options: [
                         {
                             value: 'pending',
-                            label: 'Pending',
+                            label: 'tasks.status_pending',
                         },
                         {
                             value: 'completed',
-                            label: 'Completed',
+                            label: 'tasks.status_completed',
                         },
                         {
                             value: 'stale',
-                            label: 'Stale',
+                            label: 'tasks.status_stale',
                         }
                     ]
                 },
@@ -47,11 +46,11 @@ export default {
                     value: '',
                     name: 'due_date',
                     type: 'date',
-                    label: 'Due date',
+                    label: 'tasks.due_date_label',
                     error: [],
                 }
             ],
-            buttonLabel: 'CREATE'
+            buttonLabel: this.$t('tasks.create')
         }
     },
     computed: {

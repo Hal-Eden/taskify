@@ -93,7 +93,7 @@ class UserController extends Controller
     public function store(UserCreateRequest $request): JsonResponse
     {
         $user = $this->userService->create($request->validated());
-
+        
         return response()->json($user);
     }
 

@@ -1,6 +1,7 @@
 <template>
-    <delete-modal @confirm-modal="confirmModal" title="Are you sure you want to delete this User?"
-        confirmLabel="Yes, I'm sure" cancelLabel="No, cancel"></delete-modal>
+    <delete-modal @confirm-modal="confirmModal" :title="$t('users.delete_modal_title')"
+        :confirmLabel="$t('users.delete_modal_confirm')"
+        :cancelLabel="$t('users.delete_modal_cancel')"></delete-modal>
 </template>
 
 <script>

@@ -51,18 +51,18 @@ export default {
     data: () => ({
         columns: [
             {
-                label: 'ID',
+                label: 'users.table_id',
                 classes: 'hidden md:table-cell',
             },
             {
-                label: 'Name',
+                label: 'users.table_name',
             },
             {
-                label: 'Tasks',
+                label: 'users.table_tasks',
                 classes: 'text-center',
             },
             {
-                label: 'Actions',
+                label: 'users.table_actions',
                 classes: 'text-center md:text-left',
             }
         ],

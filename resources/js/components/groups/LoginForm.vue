@@ -1,5 +1,5 @@
 <template>
-    <form-group :button-label="buttonLabel" :inputs="inputs" @confirm-form="formHandler"
+    <form-group :button-label="$t(buttonLabel)" :inputs="inputs" @confirm-form="formHandler"
         @updateInputs="inputsHandler"></form-group>
 </template>
 
@@ -17,20 +17,20 @@ export default {
                     value: '',
                     name: 'email',
                     type: 'email',
-                    label: 'Email',
-                    placeholder: 'User email',
+                    label: 'users.name_label',
+                    placeholder: 'users.name_placeholder',
                     error: [],
                 },
                 {
                     value: '',
                     name: 'password',
                     type: 'password',
-                    label: 'Password',
-                    placeholder: 'User password',
+                    label: 'users.password_label',
+                    placeholder: 'users.password_placeholder',
                     error: [],
                 }
             ],
-            buttonLabel: 'LOGIN'
+            buttonLabel: 'users.login'
         }
     },
     methods: {

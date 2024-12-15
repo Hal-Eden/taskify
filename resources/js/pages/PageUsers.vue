@@ -1,9 +1,10 @@
 <template>
-    <base-header>Users List</base-header>
-    <base-search :term="term" :loading="isLoading" v-if="mounted" placeholder="Search task..." @handle-search="searchHandler"></base-search>
+    <base-header>{{ $t('pages.users_list') }}</base-header>
+    <base-search :term="term" :loading="isLoading" v-if="mounted" :placeholder="$t('pages.search_users')"
+        @handle-search="searchHandler"></base-search>
     <loading-wrapper :is-loaded="mounted">
         <users-table v-if="users.length" @refresh-data="fetchUsers" :items="users"></users-table>
-        <base-alert v-else title="No users found!">Please check again later.</base-alert>
+        <base-alert v-else :title="$t('pages.no_users_title')">{{ $t('pages.check_later') }}</base-alert>
     </loading-wrapper>
 </template>
 

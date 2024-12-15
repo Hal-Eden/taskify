@@ -1,62 +1,79 @@
 <template>
-    <transition name="backdrop">
-        <div v-if="modalIsOpen" class="backdrop"></div>
-    </transition>
-    <transition name="modal">
-        <div v-show="modalIsOpen" id="popup-modal" tabindex="-1" class="base-modal">
-            <div class="base-modal__wrapper">
-                <div class="base-modal__content">
-                    <button type="button" @click="close" class="base-modal__button" data-modal-hide="popup-modal">
-                        <base-icon icon="close"></base-icon>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <slot :close="close" />
-                </div>
-            </div>
+  <transition name="backdrop">
+    <div v-if="modalIsOpen" class="backdrop"></div>
+  </transition>
+  <transition name="modal">
+    <div v-show="modalIsOpen" id="popup-modal" tabindex="-1" class="base-modal" @click="close">
+      <div class="base-modal__wrapper">
+        <div class="base-modal__content" @click.stop>
+          <button type="button" @click="close" class="base-modal__button">
+            <base-icon icon="close"></base-icon>
+          </button>
+          <slot :close="close" />
         </div>
-    </transition>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-    emits: ['close-modal'],
-    data() {
-        return {
-        }
+  emits: ['close-modal'],
+  data() {
+    return {
+    }
+  },
+  computed: {
+    ...mapGetters(['modalIsOpen'])
+  },
+  watch: {
+    modalIsOpen(newState) {
+      this.toggleBodyOverfow(newState)
+    }
+  },
+  methods: {
+    ...mapActions(['toggleModal']),
+    close(e) {
+      e.stopPropagation();
+      
+      this.toggleModal(false);
     },
-    computed: {
-        ...mapGetters(['modalIsOpen'])
-    },
-    methods: {
-        ...mapActions(['toggleModal']),
-        close() {
-            this.toggleModal(false);
-        }
-    },
+    toggleBodyOverfow(state) {
+      if (state) {
+        document.body.classList.add('overflow-hidden');
+        return
+      }
+
+      document.body.classList.remove('overflow-hidden');
+    }
+  },
+  beforeUnmount() {
+    this.toggleBodyOverfow(false)
+  }
 }
 </script>
 
 <style scoped>
 .backdrop {
-    @apply bg-gray-900/50 fixed inset-0 z-40
+  @apply bg-gray-900/50 fixed inset-0 z-40
 }
 
 .base-modal {
-    @apply flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full
+  @apply select-none flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full
 }
 
 .base-modal__wrapper {
-    @apply relative p-4 w-full max-w-md max-h-full
+  @apply relative p-4 w-full max-w-md max-h-full
 }
 
 .base-modal__content {
-    @apply relative bg-white rounded-lg shadow dark:bg-gray-700
+  @apply relative bg-white rounded-lg shadow dark:bg-gray-700
 }
 
 .base-modal__button {
-    @apply absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center
+  @apply absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center
 }
 
 .modal-enter-active {

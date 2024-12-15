@@ -2,19 +2,16 @@ export function updateKeys(arr, obj, arrKey, fallback = '') {
     const newArr = JSON.parse(JSON.stringify(arr));
 
     newArr.map(item => {
-        console.log(arr, obj, arrKey)
         item[arrKey] = obj[item.name] || fallback;
-        console.log(item)
+
         return item;
     })
-
-    console.log(newArr)
 
     return newArr;
 }
 
 export function handleErrors(errors) {
-    console.log(errors);
+    console.log(errors)
 
     if (!errors.response) {
         throw errors;

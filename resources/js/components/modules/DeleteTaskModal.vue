@@ -1,6 +1,6 @@
 <template>
-    <delete-modal @confirm-modal="confirmModal" title="Are you sure you want to delete this Task?"
-        confirmLabel="Yes, I'm sure" cancelLabel="No, cancel"></delete-modal>
+    <delete-modal @confirm-modal="confirmModal" :title="$t('tasks.delete_modal_title')"
+        :confirmLabel="$t('tasks.delete_modal_confirm')" :cancelLabel="$t('tasks.delete_modal_cancel')"></delete-modal>
 </template>
 
 <script>

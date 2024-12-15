@@ -9,8 +9,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use OpenApi\Attributes as OA;
-
 /**
  * @OA\Info(
  *      version="1.0.0",
@@ -48,6 +46,16 @@ class TaskController extends Controller
      *          )
      *      ),
      *      @OA\Parameter(
+     *          name="statuses",
+     *          description="Task filtering status",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *            type="array",
+     *            @OA\Items()
+     *          )
+     *      ),
+     *      @OA\Parameter(
      *          name="user_id",
      *          description="Task filtering by User ID",
      *          required=false,
@@ -73,7 +81,7 @@ class TaskController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $tasks = $this->taskService->search($request->get('term'), $request->get('user_id'));
+        $tasks = $this->taskService->search($request->get('term'), $request->get('statuses'), $request->get('user_id'));
 
         return response()->json(TaskResource::collection($tasks));
     }

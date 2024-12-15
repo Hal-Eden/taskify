@@ -1,11 +1,11 @@
 <template>
     <div class="mb-6">
-        <label :for="name" :class="labelClasses">{{ label }}</label>
+        <label :for="name" :class="labelClasses">{{ inputLabel }}</label>
         <select v-if="type === 'select'" :id="name" @change="handleInput" :name="name" class="input-text">
             <option :selected="value === option.value" v-for="option in options" :key="option.value"
-                :value="option.value">{{ option.label }}</option>
+                :value="option.value">{{ $t(option.label) }}</option>
         </select>
-        <input v-else :id="name" :type="type" :class="inputClasses" :value="value" :placeholder="placeholder"
+        <input v-else :id="name" :type="type" :class="inputClasses" :value="value" :placeholder="inputPlaceholder"
             @change="handleInput" />
         <template v-if="error.length">
             <p v-for="err in error" class="errors">
@@ -54,6 +54,12 @@ export default {
         },
         labelClasses() {
             return `label ${this.error.length ? 'label-error' : ''}`;
+        },
+        inputLabel() {
+            return this.label ? this.$t(this.label) : '';
+        },
+        inputPlaceholder() {
+            return this.placeholder ? this.$t(this.placeholder) : '';
         }
     },
     methods: {
@@ -71,19 +77,20 @@ select:not([size]) {
     background-repeat: no-repeat;
     background-size: .75em .75em;
     padding-right: 2.5rem;
-    appearance:none;
+    appearance: none;
 }
 
 select::-ms-expand {
-  display: none; /* For Internet Explorer */
+    display: none;
+    /* For Internet Explorer */
 }
 
 .input-text {
-    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm outline-blue-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
 }
 
 .error {
-    @apply bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5;
+    @apply bg-red-50 border border-red-500 text-red-900 outline-red-500 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5;
 }
 
 .label {

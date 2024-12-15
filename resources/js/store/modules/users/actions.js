@@ -33,9 +33,11 @@ export default {
 
       await axios.get('/sanctum/csrf-cookie');
 
-      await axios.post('/api/users', {
+      const response = await axios.post('/api/users', {
         ...payload.data
       });
+
+      return response.data;
     } catch (error) {
       return handleErrors(error);
     } finally {

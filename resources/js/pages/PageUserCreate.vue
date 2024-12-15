@@ -1,6 +1,6 @@
 <template>
     <div>
-        <base-header>Create User</base-header>
+        <base-header>{{ $t('pages.create_user') }}</base-header>
         <loading-wrapper>
             <user-form-create></user-form-create>
         </loading-wrapper>
