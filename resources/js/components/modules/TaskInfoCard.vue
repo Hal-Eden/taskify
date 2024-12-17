@@ -8,7 +8,7 @@
             </span>
             <span v-if="isAdmin && task.user" class="mt-1 info-line">
                 {{ $t('tasks.user') }}
-                <router-link :to="{ name: 'user', params: { userId: task.user.id } }">{{ task.user.name }}</router-link>
+                <router-link class="underline hover:no-underline" :to="{ name: 'user', params: { userId: task.user.id } }">{{ task.user.name }}</router-link>
             </span>
             <div class="flex mt-6">
                 <router-link :to="{ name: 'task-edit', params: { taskId: task.id } }">

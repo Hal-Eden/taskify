@@ -1,11 +1,11 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-D_I0LAg9.css",
+    "file": "assets/app-DodGyv68.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-BYuyHFGh.js",
+    "file": "assets/app-PHGOU2Py.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -26,11 +26,11 @@
       "resources/js/assets/icons/users.svg"
     ],
     "css": [
-      "assets/app-cvbjd5RY.css"
+      "assets/app-B9FHHFnt.css"
     ]
   },
   "resources/js/assets/icons/alert-info.svg": {
-    "file": "assets/alert-info-CtJWTho5.js",
+    "file": "assets/alert-info-FJrKl35g.js",
     "name": "alert-info",
     "src": "resources/js/assets/icons/alert-info.svg",
     "isDynamicEntry": true,
@@ -39,7 +39,7 @@
     ]
   },
   "resources/js/assets/icons/burger.svg": {
-    "file": "assets/burger-HF3poNta.js",
+    "file": "assets/burger-Dk-93xrl.js",
     "name": "burger",
     "src": "resources/js/assets/icons/burger.svg",
     "isDynamicEntry": true,
@@ -48,7 +48,7 @@
     ]
   },
   "resources/js/assets/icons/button-loader.svg": {
-    "file": "assets/button-loader-DmsNWG_9.js",
+    "file": "assets/button-loader-DEHH6Oma.js",
     "name": "button-loader",
     "src": "resources/js/assets/icons/button-loader.svg",
     "isDynamicEntry": true,
@@ -57,7 +57,7 @@
     ]
   },
   "resources/js/assets/icons/calendar.svg": {
-    "file": "assets/calendar-BK6OWBFs.js",
+    "file": "assets/calendar-COGEQtLV.js",
     "name": "calendar",
     "src": "resources/js/assets/icons/calendar.svg",
     "isDynamicEntry": true,
@@ -66,7 +66,7 @@
     ]
   },
   "resources/js/assets/icons/close.svg": {
-    "file": "assets/close-BKYhkNaW.js",
+    "file": "assets/close-BYJT7MGO.js",
     "name": "close",
     "src": "resources/js/assets/icons/close.svg",
     "isDynamicEntry": true,
@@ -75,7 +75,7 @@
     ]
   },
   "resources/js/assets/icons/door.svg": {
-    "file": "assets/door-C19ifrBy.js",
+    "file": "assets/door-BNSVTBp_.js",
     "name": "door",
     "src": "resources/js/assets/icons/door.svg",
     "isDynamicEntry": true,
@@ -84,7 +84,7 @@
     ]
   },
   "resources/js/assets/icons/edit.svg": {
-    "file": "assets/edit-BpTh7k4M.js",
+    "file": "assets/edit-BjMDsVtx.js",
     "name": "edit",
     "src": "resources/js/assets/icons/edit.svg",
     "isDynamicEntry": true,
@@ -93,7 +93,7 @@
     ]
   },
   "resources/js/assets/icons/info.svg": {
-    "file": "assets/info-aFzYCJsE.js",
+    "file": "assets/info-BFXExszr.js",
     "name": "info",
     "src": "resources/js/assets/icons/info.svg",
     "isDynamicEntry": true,
@@ -102,7 +102,7 @@
     ]
   },
   "resources/js/assets/icons/loader.svg": {
-    "file": "assets/loader-BR4n-VZS.js",
+    "file": "assets/loader-CJONHI8-.js",
     "name": "loader",
     "src": "resources/js/assets/icons/loader.svg",
     "isDynamicEntry": true,
@@ -111,7 +111,7 @@
     ]
   },
   "resources/js/assets/icons/new-user.svg": {
-    "file": "assets/new-user-ch9nZiTN.js",
+    "file": "assets/new-user-DfGcQj1J.js",
     "name": "new-user",
     "src": "resources/js/assets/icons/new-user.svg",
     "isDynamicEntry": true,
@@ -120,7 +120,7 @@
     ]
   },
   "resources/js/assets/icons/stats.svg": {
-    "file": "assets/stats-Bd1nZubN.js",
+    "file": "assets/stats-BdRLaEOU.js",
     "name": "stats",
     "src": "resources/js/assets/icons/stats.svg",
     "isDynamicEntry": true,
@@ -129,7 +129,7 @@
     ]
   },
   "resources/js/assets/icons/tasks.svg": {
-    "file": "assets/tasks-Ctj-d8k6.js",
+    "file": "assets/tasks-tDF-FMl-.js",
     "name": "tasks",
     "src": "resources/js/assets/icons/tasks.svg",
     "isDynamicEntry": true,
@@ -138,7 +138,7 @@
     ]
   },
   "resources/js/assets/icons/trash.svg": {
-    "file": "assets/trash-DWXHseg5.js",
+    "file": "assets/trash-DYDLivw4.js",
     "name": "trash",
     "src": "resources/js/assets/icons/trash.svg",
     "isDynamicEntry": true,
@@ -147,7 +147,7 @@
     ]
   },
   "resources/js/assets/icons/users.svg": {
-    "file": "assets/users-CkjlaDts.js",
+    "file": "assets/users-CPjq3mhA.js",
     "name": "users",
     "src": "resources/js/assets/icons/users.svg",
     "isDynamicEntry": true,
