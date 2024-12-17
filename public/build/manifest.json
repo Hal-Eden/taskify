@@ -1,11 +1,11 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-DodGyv68.css",
+    "file": "assets/app-DhwLCl-S.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-PHGOU2Py.js",
+    "file": "assets/app-D_sEaX5m.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -30,7 +30,7 @@
     ]
   },
   "resources/js/assets/icons/alert-info.svg": {
-    "file": "assets/alert-info-FJrKl35g.js",
+    "file": "assets/alert-info-CxAF_Scg.js",
     "name": "alert-info",
     "src": "resources/js/assets/icons/alert-info.svg",
     "isDynamicEntry": true,
@@ -39,7 +39,7 @@
     ]
   },
   "resources/js/assets/icons/burger.svg": {
-    "file": "assets/burger-Dk-93xrl.js",
+    "file": "assets/burger-Om37MUTw.js",
     "name": "burger",
     "src": "resources/js/assets/icons/burger.svg",
     "isDynamicEntry": true,
@@ -48,7 +48,7 @@
     ]
   },
   "resources/js/assets/icons/button-loader.svg": {
-    "file": "assets/button-loader-DEHH6Oma.js",
+    "file": "assets/button-loader-KrDw7s2S.js",
     "name": "button-loader",
     "src": "resources/js/assets/icons/button-loader.svg",
     "isDynamicEntry": true,
@@ -57,7 +57,7 @@
     ]
   },
   "resources/js/assets/icons/calendar.svg": {
-    "file": "assets/calendar-COGEQtLV.js",
+    "file": "assets/calendar-BPclXhAa.js",
     "name": "calendar",
     "src": "resources/js/assets/icons/calendar.svg",
     "isDynamicEntry": true,
@@ -66,7 +66,7 @@
     ]
   },
   "resources/js/assets/icons/close.svg": {
-    "file": "assets/close-BYJT7MGO.js",
+    "file": "assets/close-D6xrEAtU.js",
     "name": "close",
     "src": "resources/js/assets/icons/close.svg",
     "isDynamicEntry": true,
@@ -75,7 +75,7 @@
     ]
   },
   "resources/js/assets/icons/door.svg": {
-    "file": "assets/door-BNSVTBp_.js",
+    "file": "assets/door-BV2O1iuF.js",
     "name": "door",
     "src": "resources/js/assets/icons/door.svg",
     "isDynamicEntry": true,
@@ -84,7 +84,7 @@
     ]
   },
   "resources/js/assets/icons/edit.svg": {
-    "file": "assets/edit-BjMDsVtx.js",
+    "file": "assets/edit-zpO0QKuE.js",
     "name": "edit",
     "src": "resources/js/assets/icons/edit.svg",
     "isDynamicEntry": true,
@@ -93,7 +93,7 @@
     ]
   },
   "resources/js/assets/icons/info.svg": {
-    "file": "assets/info-BFXExszr.js",
+    "file": "assets/info-aWYhL2IX.js",
     "name": "info",
     "src": "resources/js/assets/icons/info.svg",
     "isDynamicEntry": true,
@@ -102,7 +102,7 @@
     ]
   },
   "resources/js/assets/icons/loader.svg": {
-    "file": "assets/loader-CJONHI8-.js",
+    "file": "assets/loader-DieoE10B.js",
     "name": "loader",
     "src": "resources/js/assets/icons/loader.svg",
     "isDynamicEntry": true,
@@ -111,7 +111,7 @@
     ]
   },
   "resources/js/assets/icons/new-user.svg": {
-    "file": "assets/new-user-DfGcQj1J.js",
+    "file": "assets/new-user-B6OTRs_2.js",
     "name": "new-user",
     "src": "resources/js/assets/icons/new-user.svg",
     "isDynamicEntry": true,
@@ -120,7 +120,7 @@
     ]
   },
   "resources/js/assets/icons/stats.svg": {
-    "file": "assets/stats-BdRLaEOU.js",
+    "file": "assets/stats-0vUrIFVF.js",
     "name": "stats",
     "src": "resources/js/assets/icons/stats.svg",
     "isDynamicEntry": true,
@@ -129,7 +129,7 @@
     ]
   },
   "resources/js/assets/icons/tasks.svg": {
-    "file": "assets/tasks-tDF-FMl-.js",
+    "file": "assets/tasks-DlE33fm3.js",
     "name": "tasks",
     "src": "resources/js/assets/icons/tasks.svg",
     "isDynamicEntry": true,
@@ -138,7 +138,7 @@
     ]
   },
   "resources/js/assets/icons/trash.svg": {
-    "file": "assets/trash-DYDLivw4.js",
+    "file": "assets/trash-B2hCiulP.js",
     "name": "trash",
     "src": "resources/js/assets/icons/trash.svg",
     "isDynamicEntry": true,
@@ -147,7 +147,7 @@
     ]
   },
   "resources/js/assets/icons/users.svg": {
-    "file": "assets/users-CPjq3mhA.js",
+    "file": "assets/users-fNVttmbb.js",
     "name": "users",
     "src": "resources/js/assets/icons/users.svg",
     "isDynamicEntry": true,

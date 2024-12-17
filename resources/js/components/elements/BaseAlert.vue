@@ -1,7 +1,7 @@
 <template>
     <div class="base-alert"
         role="alert">
-        <base-icon icon="alert-info"></base-icon>
+        <base-icon class="mr-1" icon="alert-info"></base-icon>
         <div>
             <span class="font-medium">{{ title }}</span> <slot />
         </div>
